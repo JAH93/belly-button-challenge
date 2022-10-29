@@ -1,7 +1,6 @@
-// Initializing the page and calling the other functions
+// Initializing
 function startup() {
 
-    // Grabbing the dropdown element
     var selector = d3.select('#selDataset');
 
     d3.json("samples.json").then(function(samplesData){
@@ -14,23 +13,22 @@ function startup() {
             .attr('value', d => d)
             .text(d => d);
 
-        // Take in the first name upon loading the page
+        // Take in the first name 
         var starter = names[0];
 
-        // Call other functions using starter name
         buildPlots(starter);
         demographics(starter);
 
     }).catch(error => console.log(error));
 };
 
-// Dynamic changing of plots and demographics upon change in dropdown
+
 function optionChanged(newID){
     buildPlots(newID);
     demographics(newID);
 };
 
-// Building Bar Chart and Bubble Chart
+
 function buildPlots(id) {
     // Reading in the json dataset
     d3.json("samples.json").then(function(samplesData){
